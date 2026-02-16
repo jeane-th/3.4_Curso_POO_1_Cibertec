@@ -1,0 +1,85 @@
+﻿@model appWeb01.Models.Venta
+
+@{
+    ViewBag.Title = "ActionVenta";
+}
+
+<h2>Lab 1.1 - Formulario Venta</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal row gap-3">
+    @*<h4>Venta</h4>*@
+    <hr/>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Boleta, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Boleta, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Boleta, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Mueble, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Mueble, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Mueble, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Precio, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Precio, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!--Agrgamos-->
+
+    <div class="form-group row">
+        @Html.Label("descuento", "Descuento", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("descuento", (double)ViewBag.Descuento, new { @class = "form-control", @readOnly = "true" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        @Html.Label("total", "Total", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("total", (double)ViewBag.Total, new { @class = "form-control", @readOnly = "true" })
+        </div>
+    </div>
+
+    <div class="form-group mt-4">
+        <div class="col-md-offset-2 col-md-10">
+            <!--                         Nombre de la vista   -->
+            @Html.ActionLink("Limpiar", "ActionVenta", null, new { @class = "btn btn-dark" })
+            <input type="submit" value="Create" class="btn btn-danger" />
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
